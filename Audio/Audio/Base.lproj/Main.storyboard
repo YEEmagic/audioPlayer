@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="57" translatesAutoresizingMaskIntoConstraints="NO" id="z47-PC-BGR">
-                                <rect key="frame" x="23" y="99" width="347" height="341"/>
+                                <rect key="frame" x="23" y="99" width="347" height="467"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Audio Player" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lHy-lV-Zda">
                                         <rect key="frame" x="109" y="0.0" width="129" height="28.666666666666668"/>
@@ -103,6 +103,47 @@
                                             </slider>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="I9b-En-WTi">
+                                        <rect key="frame" x="112" y="398" width="123.33333333333331" height="69"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="iB6-86-Wtw">
+                                                <rect key="frame" x="0.0" y="0.0" width="123.33333333333333" height="31"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7p-kU-SmZ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="54.333333333333336" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jFi-N6-60i">
+                                                        <rect key="frame" x="74.333333333333343" y="0.0" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="swRecordMode:" destination="BYZ-38-t0r" eventType="valueChanged" id="Fdu-ST-QM2"/>
+                                                        </connections>
+                                                    </switch>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Vl5-Ov-fCg">
+                                                <rect key="frame" x="0.0" y="39" width="123.33333333333333" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="acm-vl-vOr">
+                                                        <rect key="frame" x="0.0" y="0.0" width="57.333333333333336" height="30"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Record"/>
+                                                        <connections>
+                                                            <action selector="btnRecord:" destination="BYZ-38-t0r" eventType="touchUpInside" id="O7m-ql-fQV"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgH-c5-d5w">
+                                                        <rect key="frame" x="77.333333333333343" y="0.0" width="46" height="30"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -116,9 +157,11 @@
                     <connections>
                         <outlet property="btnPause" destination="WZ2-TH-pIF" id="Xa9-d7-uIJ"/>
                         <outlet property="btnPlay" destination="tXF-My-dMW" id="Mn1-3f-QT6"/>
+                        <outlet property="btnRecord" destination="acm-vl-vOr" id="IsS-HH-mh3"/>
                         <outlet property="btnStop" destination="XxD-up-S0z" id="4co-bm-bj5"/>
                         <outlet property="lblCurrentTime" destination="cbk-OI-qte" id="gHO-eM-1WP"/>
                         <outlet property="lblEndTime" destination="LEz-GL-nLP" id="aDz-jB-mTT"/>
+                        <outlet property="lblRecordTime" destination="hgH-c5-d5w" id="2c9-O2-fwa"/>
                         <outlet property="pvProgressPlay" destination="qKJ-9d-s80" id="PnP-n2-os9"/>
                         <outlet property="slVolume" destination="wQm-Vb-OQW" id="DLp-lv-y0M"/>
                     </connections>
