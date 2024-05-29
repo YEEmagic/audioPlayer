@@ -8,7 +8,7 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController, AVAudioPlayerDelegate {
+class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDelegate {
     
     var audioPlayer : AVAudioPlayer!
     var audioFile : URL!
@@ -30,11 +30,48 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     
     @IBOutlet var slVolume: UISlider!
     
+    @IBOutlet var btnRecord: UIButton!
+    @IBOutlet var lblRecordTime: UILabel!
+    
+    var audioRecorder = AVAudioRecorder!
+    var isRecordMode = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        audioFile = Bundle.main.url(forResource: "Sicilian_Breeze", withExtension: "mp3")
-        initPlay()
+        selectAudioFile()
+        if !isRecordMode {
+            initPlay()
+            btnRecord.isEnabled = false
+            lblRecordTime.isEnabled = false
+        } else {
+            initRecord()
+        }
+    }
+    
+    func selectAudioFile() {
+        if !isRecordMode {
+            audioFile = Bundle.main.url(forResource: "Sicilian_Breeze", withExtension: "mp3")
+        } else {
+            let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            audioFile = documentDirectory.appendingPathComponent("recordFile.m4a")
+        }
+    }
+    
+    func initRecord() {
+        let recordSettings = [
+            AVFormatIDKey : NSNumber(value: kAudioFormatAppleLossless as UInt32),
+            AVEncoderAudioQualityKey : AVAudioQuality.max.rawValue,
+            AVEncoderBitRateKey : 320000,
+            AVNumberOfChannelsKey : 2,
+            AVSampleRateKey : 44100.0] as [String : Any]
+        do {
+            audioRecorder = try AVAudioRecorder(url: audioFile, settings: recordSettings)
+        } catch let error as NSError {
+            print("Error-initRecord : \(error)")
+        }
+        audioRecorder.delegate = self
+        
     }
     
     func initPlay() {
@@ -106,7 +143,13 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     
+    @IBAction func swRecordMode(_ sender: UISwitch) {
+        
+    }
     
+    @IBAction func btnRecord(_ sender: UIButton) {
+        
+    }
     
     
 }
